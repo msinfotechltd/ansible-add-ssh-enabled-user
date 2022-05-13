@@ -1,0 +1,6 @@
+---
+
+- hosts: activewins #raven1 #,demo
+  tasks:
+  - name: "ping ?"
+    ping:

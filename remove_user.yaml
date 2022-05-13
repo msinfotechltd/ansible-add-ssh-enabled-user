@@ -1,0 +1,14 @@
+---
+
+- hosts: demo
+  vars: 
+    users: 
+    - mehul
+  tasks:
+  - name: "Remove user accounts"
+    become: true
+    user: 
+      name: "{{ item }}"
+      state: "absent"
+      remove: true
+    with_items: "{{ users }}"

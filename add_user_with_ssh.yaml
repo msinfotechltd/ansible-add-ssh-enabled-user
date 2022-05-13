@@ -1,0 +1,18 @@
+---
+
+- hosts: demo
+  vars: 
+    users:
+    - mehul
+  tasks:
+  - name: "Create user accounts"
+    become: true
+    user: 
+      name: "{{ item }}"
+    with_items: "{{ users }}"
+  - name: "Add authorized keys"
+    become: true
+    authorized_key:
+      user: "{{item}}"
+      key: "{{ lookup('file', 'files/'+item+'_key.pub') }}"
+    with_items: "{{ users }}"
